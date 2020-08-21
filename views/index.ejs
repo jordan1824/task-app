@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+  <div class='header'>
+    <h1 class='header__title'>Your Tasks</h1>
+    <form action="/add-task" method="POST" class='form'>
+      <input type="text" name='task' class='task-input' placeholder='Enter your task here...'>
+      <button type="submit" class='submit-btn'>Add Task</button>
+    </form>
+  </div>
+  <div class='tasks-container'>
+    <ul class='task-list'>
+      <li class='task'>
+        <h3 class='task-item'><i class="fa fa-check" aria-hidden="true"></i>Clean the dishes</h3>
+        <div class='btn-container'>
+          <button class='edit-btn btn'>Edit</button>
+          <button class='delete-btn btn'>Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>
