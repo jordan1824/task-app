@@ -1,0 +1,11 @@
+<%- include('includes/header') %>
+
+<div class='container-block'>
+  <h2 class='page-title'>Error:</h2>
+  <% errors.forEach(error => { %>
+    <h3 class="page-message"><%= error %></h3>
+  <% }) %>
+  <a href="/" class='page-link'>Return To Homepage</a>
+</div>
+
+<%- include('includes/footer') %>

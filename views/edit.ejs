@@ -1,0 +1,13 @@
+<%- include("includes/header") %>
+
+<div class='container-block'>
+  <h3 class='edit-title'>Edit Your Task</h3>
+  <form action="/edit/<%- task._id %>" method="POST">
+    <input class='edit-input' type="text" name="task" value="<%- task.task %>">
+    <input class='edit-submit-btn' type="submit" value="Update Task">
+  </form>
+  <br>
+  <a href="/" class='page-link'>Return To Homepage</a>
+</div>
+
+<%- include("includes/footer") %>
