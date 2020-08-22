@@ -10,8 +10,8 @@ exports.home = function (req, res) {
 
 exports.addTask = function(req, res) {
   let task = new Task(req.body.task)
-  task.createNewTask().then(function() {
-    res.redirect('/')
+  task.createNewTask().then(function(response) {
+    res.send(response)
   }).catch(function(errors) {
     res.render("404", {"errors": errors})
   })

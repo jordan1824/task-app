@@ -2,7 +2,7 @@
   <div class='header'>
     <h1 class='header__title'>Your Tasks</h1>
     <form action="/add-task" method="POST" class='form'>
-      <input type="text" name='task' class='task-input' placeholder='Enter your task here...' autofocus>
+      <input type="text" name='task' class='task-input' placeholder='Enter your task here...' autofocus autocomplete="off">
       <button type="submit" class='submit-btn'>Add Task</button>
     </form>
   </div>
@@ -11,10 +11,10 @@
       <% if (tasks.length) { %>
       <% tasks.forEach(task => { %>
         <li class='task'>
-          <h3 class='task-item'><a href="/delete/<%- task._id %>"><i class="fa fa-check" aria-hidden="true"></i></a><%= task.task %></h3>
+          <h3 class='task-item'><a href="/delete/<%- task._id %>"><i class="fa check-btn fa-check" data-id="<%- task._id %>" aria-hidden="true"></i></a><span class='task-text'><%= task.task %></span></h3>
           <div class='btn-container'>
-            <a href="/edit/<%- task._id %>" class='edit-btn btn'>Edit</a>
-            <a href="/delete/<%- task._id %>" class='delete-btn btn'>Delete</a>
+            <a href="/edit/<%- task._id %>" data-id="<%- task._id %>" class='edit-btn btn'>Edit</a>
+            <a href="/delete/<%- task._id %>" data-id="<%- task._id %>" class='delete-btn btn'>Delete</a>
           </div>
         </li>
       <% }) 

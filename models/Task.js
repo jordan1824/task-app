@@ -22,8 +22,8 @@ Task.prototype.createNewTask = function() {
     this.validate()
     
     if (!this.errors.length) {
-      await app.tasksCollection.insertOne({task: this.task})
-      resolve()
+      let item = await app.tasksCollection.insertOne({task: this.task})
+      resolve(item)
     } else {
       reject(this.errors)
     }
