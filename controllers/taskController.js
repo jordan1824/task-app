@@ -11,9 +11,17 @@ exports.home = function (req, res) {
 exports.addTask = function(req, res) {
   let task = new Task(req.body.task)
   task.createNewTask().then(function(response) {
-    res.send(response)
+    if (req.body.sent == "async") {
+      res.send(response.ops[0])
+    } else {
+      res.redirect('/')
+    }
   }).catch(function(errors) {
-    res.render("404", {"errors": errors})
+    if (req.body.sent == "async") {
+      res.send(errors)
+    } else {
+      res.render("404", {"errors": errors})
+    }
   })
 }
 

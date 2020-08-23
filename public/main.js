@@ -8,16 +8,28 @@ function checkIfTasks() {
 }
 
 function insertTaskHTML(task) {
-  return document.querySelector(".task-list").insertAdjacentHTML("beforeend", `
-  <li class='task'>
-    <h3 class='task-item'><a href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
-    <div class='btn-container'>
-      <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
-      <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
-    </div>
-  </li>
-  `
-  )
+  let taskList = document.querySelector(".task-list")
+  if (taskList.querySelector(".task-item")) {
+    return taskList.insertAdjacentHTML("beforeend", `
+    <li class='task'>
+      <h3 class='task-item'><a href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
+      <div class='btn-container'>
+        <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
+        <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
+      </div>
+    </li>
+    `)
+  } else {
+    return taskList.innerHTML = `
+    <li class='task'>
+      <h3 class='task-item'><a href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
+      <div class='btn-container'>
+        <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
+        <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
+      </div>
+    </li>
+    `
+  }
 }
 
 document.addEventListener("click", function(event) {
@@ -102,13 +114,20 @@ document.querySelector('.form').addEventListener('submit', function(event) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({task: task})
+      body: JSON.stringify({task: task, sent: "async"})
     })
     .then(response => response.json())
     .then(data => {
-      taskField.value = ""
-      taskField.focus()
-      insertTaskHTML(data.ops[0])
+      if (data.task) {
+        taskField.value = ""
+        taskField.focus()
+        insertTaskHTML(data)
+      } else {
+        console.log(data)
+        data.forEach(error => {
+          alert(error)
+        })
+      }
     })
     .catch(function() {
       console.log("Please try again later.")

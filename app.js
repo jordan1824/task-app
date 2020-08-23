@@ -1,14 +1,5 @@
 const express = require('express');
-const mongodb = require('mongodb');
 const app = express();
-
-const connectionString = 'mongodb+srv://TaskAppUsername:TaskAppPassword123@cluster0.dsmzt.mongodb.net/TaskApp?retryWrites=true&w=majority'
-
-mongodb.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}, async function(err, client) {
-    exports.tasksCollection = await client.db().collection("Tasks")
-    exports.usersCollection = 
-    app.listen(3000)
-})
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -23,3 +14,5 @@ app.set('views', 'views');
 app.set('view engine', 'ejs');
 
 app.use('/', require('./router'));
+
+module.exports = app

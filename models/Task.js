@@ -1,4 +1,4 @@
-const app = require("../app")
+const tasksCollection = require("../db").db().collection("Tasks")
 const mongodb = require("mongodb")
 
 let Task = function (task) {
@@ -22,7 +22,7 @@ Task.prototype.createNewTask = function() {
     this.validate()
     
     if (!this.errors.length) {
-      let item = await app.tasksCollection.insertOne({task: this.task})
+      let item = await tasksCollection.insertOne({task: this.task})
       resolve(item)
     } else {
       reject(this.errors)
@@ -32,7 +32,7 @@ Task.prototype.createNewTask = function() {
 
 Task.prototype.findTask = function() {
   return new Promise(function(resolve, reject) {
-    app.tasksCollection.find().toArray(function(err, tasks) {
+    tasksCollection.find().toArray(function(err, tasks) {
       resolve(tasks)
     })
   })
@@ -40,7 +40,7 @@ Task.prototype.findTask = function() {
 
 Task.prototype.delete = function(id) {
   return new Promise(async function(resolve, reject) {
-    await app.tasksCollection.deleteOne({"_id": mongodb.ObjectId(id)}, function() {
+    await tasksCollection.deleteOne({"_id": mongodb.ObjectId(id)}, function() {
       resolve()
     })
   })
@@ -48,14 +48,14 @@ Task.prototype.delete = function(id) {
 
 Task.prototype.getTask = function(id) {
   return new Promise(async function(resolve, reject) {
-    let task = await app.tasksCollection.findOne({"_id": mongodb.ObjectId(id)})
+    let task = await tasksCollection.findOne({"_id": mongodb.ObjectId(id)})
     resolve(task)
   })
 }
 
 Task.prototype.updateTask = function(id, newTask) {
   return new Promise(async (resolve, request) => {
-    await app.tasksCollection.findOneAndUpdate({"_id": mongodb.ObjectId(id)}, {$set: {"task": newTask}}, function() {
+    await tasksCollection.findOneAndUpdate({"_id": mongodb.ObjectId(id)}, {$set: {"task": newTask}}, function() {
       resolve()
     })
   })
