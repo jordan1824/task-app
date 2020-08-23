@@ -86,23 +86,37 @@ body {
   padding: 0;
 }
 .empty-task {
-  padding: 20px;
+  padding: 15px 20px 20px;
   text-align: center;
+  margin: auto;
+  animation-name: loadIn;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+.empty-task--visible {
+  animation-play-state: running;
 }
 .empty-task-title {
   padding: 20px 20px 20px 0px;
   margin: 0 auto;
-}
+} 
 .task-item {
   width: 80%;
   display: inline-block;
+} 
+.task-text {
+  margin-left: 15px;
 }
 .fa-check {
-  margin-right: 15px;
   background: white;
   color: white;
   border-radius: 5px;
   transition: color 0.3s;
+}
+.check-link {
+  cursor: default;
 }
 .fa-check:hover {
   color: var(--btn-color);
@@ -138,6 +152,13 @@ body {
 .delete-btn:hover {
   background: #c61717;
   transition: background 0.5s;
+}
+
+@keyframes loadIn {
+  0% {width: 0px; height: 0px; padding: 0}
+  5% {width: 2px; height: 2px; padding: 0}
+  50% {width: 80%; height: 2px; padding: 0}
+  100% {width: 80%; height: 100px; padding: 15px 20px 20px}
 }
 
 @keyframes hide {

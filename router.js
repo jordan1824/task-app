@@ -7,6 +7,7 @@ router.get('/login', userController.viewLogin)
 router.post('/login', userController.login)
 router.get('/register', userController.viewRegister)
 router.post('/register', userController.register)
+router.get('/logout', userController.logout)
 
 // Task Related Routes
 router.get('/', taskController.home);

@@ -2,9 +2,16 @@ const User = require("../models/User")
 
 exports.login = function(req, res) {
   new User().checkUserDetails(req.body.username, req.body.password).then(function() {
+    req.session.user = {username: req.body.username}
     res.send("Woo-hoo! Login Was Successful!")
   }).catch(function() {
     res.send("Invalid login details")
+  })
+}
+
+exports.logout = function(req, res) {
+  req.session.destroy(function() {
+    res.redirect('/login')
   })
 }
 

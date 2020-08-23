@@ -4,6 +4,7 @@ function checkIfTasks() {
     document.querySelector(".task-list").insertAdjacentHTML('beforeend', `<li class='task empty-task'>
     <h3 class='empty-task-title'>You do not have any tasks.</h3>
   </li>`)
+  document.querySelector(".empty-task").classList.add("empty-task--visible");
   }
 }
 
@@ -12,7 +13,7 @@ function insertTaskHTML(task) {
   if (taskList.querySelector(".task-item")) {
     return taskList.insertAdjacentHTML("beforeend", `
     <li class='task'>
-      <h3 class='task-item'><a href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
+      <h3 class='task-item'><a class='check-link' href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
       <div class='btn-container'>
         <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
         <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
@@ -22,7 +23,7 @@ function insertTaskHTML(task) {
   } else {
     return taskList.innerHTML = `
     <li class='task'>
-      <h3 class='task-item'><a href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
+      <h3 class='task-item'><a class='check-link' href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
       <div class='btn-container'>
         <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
         <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
@@ -55,8 +56,15 @@ document.addEventListener("click", function(event) {
       })
     }
   }
-
-  // Check Button
+   
+  // Check Button:
+  // Prevents link from executing delete function
+  // Note: This is neccessary because the a link partly extends past checkmark
+  // Which, if clicked, will prevent the nice smooth animation, and cause a page refresh
+  if (event.target.classList.contains("check-link")) {
+    event.preventDefault();
+  }
+  // Handles click event on checkmark
   if (event.target.classList.contains("check-btn")) {
     event.preventDefault()
     let id = event.target.getAttribute("data-id")
