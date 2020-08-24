@@ -13,21 +13,31 @@ function insertTaskHTML(task) {
   if (taskList.querySelector(".task-item")) {
     return taskList.insertAdjacentHTML("beforeend", `
     <li class='task'>
-      <h3 class='task-item'><a class='check-link' href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
-      <div class='btn-container'>
-        <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
-        <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
-      </div>
+    <div class='link-container'>
+      <a class='check-link' href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a>
+    </div>
+    <div class='task-item'>
+      <span class='task-text'>${task.task}</span>
+    </div>
+    <div class='btn-container'>
+      <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
+      <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
+    </div>
     </li>
     `)
   } else {
     return taskList.innerHTML = `
     <li class='task'>
-      <h3 class='task-item'><a class='check-link' href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a><span class='task-text'>${task.task}</span></h3>
-      <div class='btn-container'>
-        <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
-        <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
-      </div>
+    <div class='link-container'>
+      <a class='check-link' href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a>
+    </div>
+    <div class='task-item'>
+      <span class='task-text'>${task.task}</span>
+    </div>
+    <div class='btn-container'>
+      <a href="/edit/${task._id}" data-id="${task._id}" class='edit-btn btn'>Edit</a>
+      <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
+    </div>
     </li>
     `
   }
@@ -108,6 +118,23 @@ document.addEventListener("click", function(event) {
         console.log("Please try again later.")
       })
     }
+  }
+})
+
+// Alert popup for task form
+document.querySelector(".task-input").addEventListener('keyup', function() {
+  const taskField = document.querySelector(".task-input")
+  if (taskField.value.length > 75) {
+    document.querySelector(".alert").classList.add("alert-show")
+  } else {
+    document.querySelector(".alert").classList.remove("alert-show")
+  }
+})
+// Removes alert popup (this is for if the user holds down backspace)
+document.querySelector(".task-input").addEventListener('keydown', function() {
+  const taskField = document.querySelector(".task-input")
+  if (taskField.value.length < 75) {
+    document.querySelector(".alert").classList.remove("alert-show")
   }
 })
 

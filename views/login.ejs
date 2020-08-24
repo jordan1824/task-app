@@ -1,11 +1,19 @@
 <%- include('includes/header') %>
+<div class='navbar'>
+  <h2 class='navbar-title'>TaskApp</h2>
+  <a class='navbar-link' href="/register">Register</a>
+</div>
 
-<div class='container-block'>
-  <h2 class='page-title'>Log In</h2>
-  <form action="/login" method="POST">
-    <input type="text" name="username" placeholder="Enter username here...">
-    <input type="password" name="password" placeholder="Enter password here...">
-    <button type="submit">Login</button>
+<br>
+<div class='login-block'>
+  <h2 class='login-title'>Log In</h2>
+  <form action="/login" method="POST" class='login-form'>
+    <p class='form-label'>Username:</p>
+    <input class='login-field' type="text" name="username" placeholder="Enter username here..." autocomplete='off'>
+    <p class='form-label'>Password:</p>
+    <input class='login-field' type="password" name="password" placeholder="Enter password here..." autocomplete='off'>
+    <button class='login-btn' type="submit">Login</button>
+    <a class='register-link' href="/register">Create New Account</a>
   </form>
 </div>
 

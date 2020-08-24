@@ -1,5 +1,6 @@
 const tasksCollection = require("../db").db().collection("Tasks")
 const mongodb = require("mongodb")
+const sanitizeHTML = require("sanitize-html")
 
 let Task = function (task) {
   this.task = task
@@ -14,6 +15,7 @@ Task.prototype.cleanup = function() {
 
 Task.prototype.validate = function() {
   if (this.task == "") {this.errors.push("You must provide a task")}
+  if (this.task.length > 75) {this.errors.push("Task cannot exceed 75 characters.")}
 }
 
 Task.prototype.createNewTask = function() {
@@ -22,7 +24,8 @@ Task.prototype.createNewTask = function() {
     this.validate()
     
     if (!this.errors.length) {
-      let item = await tasksCollection.insertOne({task: this.task})
+      let safeText = sanitizeHTML(this.task, {allowedTags: [], allowedAttributes: {}})
+      let item = await tasksCollection.insertOne({task: safeText})
       resolve(item)
     } else {
       reject(this.errors)

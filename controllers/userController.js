@@ -1,9 +1,19 @@
 const User = require("../models/User")
 
+exports.passwordProtected = function(req, res, next) {
+  if (req.session.user) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+}
+
 exports.login = function(req, res) {
   new User().checkUserDetails(req.body.username, req.body.password).then(function() {
     req.session.user = {username: req.body.username}
-    res.send("Woo-hoo! Login Was Successful!")
+    req.session.save(function() {
+      res.redirect('/')
+    })
   }).catch(function() {
     res.send("Invalid login details")
   })
@@ -26,7 +36,10 @@ exports.viewRegister = function(req, res) {
 exports.register = function(req, res) {
   let user = new User(req.body)
   user.createNewUser().then(function() {
-    res.send("User was created successfully")
+    req.session.user = {username: req.body.username}
+    req.session.save(function() {
+      res.redirect('/')
+    })
   }).catch(function(errors) {
     res.render("404", {errors: errors})
   })

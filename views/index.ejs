@@ -1,17 +1,26 @@
 <%- include('includes/header') %>
   <div class='header'>
+    <a href="/logout" class='logout-link'>Logout</a>
     <h1 class='header__title'>Your Tasks</h1>
-    <form action="/add-task" method="POST" class='form'>
-      <input type="text" name='task' class='task-input' placeholder='Enter your task here...' autofocus autocomplete="off">
-      <button type="submit" class='submit-btn'>Add Task</button>
-    </form>
+    <div class='form-container'>
+      <form action="/add-task" method="POST" class='form'>
+        <div class="alert alert-red">Your task cannot exceed 75 characters.</div>
+        <input type="text" name='task' class='task-input' placeholder='Enter your task here...' autofocus autocomplete="off">
+        <button type="submit" class='submit-btn'>Add Task</button>
+      </form>
+    </div>
   </div>
   <div class='tasks-container'>
     <ul class='task-list'>
       <% if (tasks.length) { %>
       <% tasks.forEach(task => { %>
         <li class='task'>
-          <h3 class='task-item'><a class='check-link' href="/delete/<%- task._id %>"><i class="fa check-btn fa-check" data-id="<%- task._id %>" aria-hidden="true"></i></a><span class='task-text'><%= task.task %></span></h3>
+          <div class='link-container'>
+            <a class='check-link' href="/delete/<%- task._id %>"><i class="fa check-btn fa-check" data-id="<%- task._id %>" aria-hidden="true"></i></a>
+          </div>
+          <div class='task-item'>
+            <span class='task-text'><%= task.task %></span>
+          </div>
           <div class='btn-container'>
             <a href="/edit/<%- task._id %>" data-id="<%- task._id %>" class='edit-btn btn'>Edit</a>
             <a href="/delete/<%- task._id %>" data-id="<%- task._id %>" class='delete-btn btn'>Delete</a>
