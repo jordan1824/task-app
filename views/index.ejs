@@ -3,8 +3,9 @@
 <%- include('includes/alert') %>
 
   <div class='header'>
+    <a href="/logout" class='logout-icon'><i class="fa fa-sign-out" aria-hidden="true"></i></a>
     <a href="/logout" class='logout-link'>Logout</a>
-    <h1 class='header__title'>Your Tasks</h1>
+    <h1 class='header__title'>TaskApp</h1>
     <div class='form-container'>
       <form action="/add-task" method="POST" class='form'>
         <input type="text" name='task' class='task-input' placeholder='Enter your task here...' autofocus autocomplete="off">

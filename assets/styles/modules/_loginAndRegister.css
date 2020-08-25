@@ -1,15 +1,17 @@
 .login-block {
   max-width: 500px;
+  width: 90%;
   background: var(--primary-color);
   margin: 30px auto 50px;
-  padding: 10px 10px 80px;
+  padding: 0px 10px 60px;
   border: 5px solid var(--border-color);
 }
 .register-block {
   max-width: 600px;
+  width: 90%;
   background: var(--primary-color);
-  margin: 30px auto 50px;
-  padding: 10px 10px 80px;
+  margin: 30px auto 40px;
+  padding: 0px 10px 60px;
   border: 5px solid var(--border-color);
 }
 .login-title {
@@ -34,7 +36,7 @@
   display: block;
   height: 40px;
   border-radius: 5px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   padding: 5px 15px;
   border: none;
 }
@@ -60,4 +62,16 @@
   display: block;
   text-decoration: none;
   font-family: sans-serif;
+}
+
+@media (max-width: 550px) {
+  .login-title {
+    font-size: 2.3rem;
+  }
+  .login-form {
+    width: 95%;
+  }
+  .login-field {
+    font-size: 1rem;
+  }
 }

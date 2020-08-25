@@ -4,10 +4,6 @@
   background: rgb(255, 78, 78);
   border-bottom: 2px solid var(--secondary-color);
 }
-.alert-heading {
-  text-align: center;
-  margin: 5px;
-}
 .alert-message {
   text-align: center;
   margin-bottom: 10px;
@@ -29,4 +25,14 @@
 }
 .alert-show {
   transform: translateX(-50%) translateY(-100%);
+}
+
+@media (max-width: 550px) {
+  .error-alert {
+    padding: 8px;
+  }
+  .alert-message {
+    font-size: 0.8rem;
+    margin: 8px;
+  }
 }

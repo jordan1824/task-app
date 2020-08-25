@@ -20,3 +20,9 @@
   transition: color 0.5s;
   color: var(--secondary-color);
 }
+
+@media (max-width: 550px) {
+  .navbar-link {
+    display: none;
+  }
+}
