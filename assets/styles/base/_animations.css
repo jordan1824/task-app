@@ -1,0 +1,33 @@
+@keyframes loadIn {
+  0% {width: 0px; height: 0px; padding: 0}
+  5% {width: 2px; height: 2px; padding: 0}
+  50% {width: 80%; height: 2px; padding: 0}
+  100% {width: 80%; height: 100px; padding: 15px 20px 20px}
+}
+
+@keyframes hide {
+  0% {
+    border: 4px solid var(--border-color);
+    margin: 10px auto;
+    padding: 20px 30px 20px 50px;
+    opacity: 1;
+    line-height: 1;
+    height: 100px;
+  }
+  70% {
+    border: 4px solid var(--border-color);
+    margin: 10px auto;
+    padding: 20px 30px 20px 50px;
+    opacity: 0;
+    line-height: 1;
+    height: 100px;
+  }
+  100% {
+    border: 0px solid var(--border-color);
+    margin: -10px 0px 0px;
+    padding: 0px;
+    line-height: 0px;
+    opacity: 0;
+    height: 0px;
+  }
+}

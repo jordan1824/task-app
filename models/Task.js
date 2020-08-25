@@ -14,53 +14,71 @@ Task.prototype.cleanup = function() {
 }
 
 Task.prototype.validate = function() {
-  if (this.task == "") {this.errors.push("You must provide a task")}
+  if (this.task == "") {this.errors.push("You must provide a task.")}
   if (this.task.length > 75) {this.errors.push("Task cannot exceed 75 characters.")}
 }
 
-Task.prototype.createNewTask = function() {
+Task.prototype.createNewTask = function(username) {
   return new Promise(async (resolve, reject) => {
     this.cleanup()
     this.validate()
     
     if (!this.errors.length) {
       let safeText = sanitizeHTML(this.task, {allowedTags: [], allowedAttributes: {}})
-      let item = await tasksCollection.insertOne({task: safeText})
-      resolve(item)
+      try {
+        let item = await tasksCollection.insertOne({task: safeText, author: username})
+        resolve(item)
+      } catch {
+        reject()
+      }
     } else {
       reject(this.errors)
     }
   })
 }
 
-Task.prototype.findTask = function() {
+Task.prototype.findTask = function(username) {
   return new Promise(function(resolve, reject) {
-    tasksCollection.find().toArray(function(err, tasks) {
-      resolve(tasks)
-    })
+    try {
+      tasksCollection.find({author: username}).toArray(function(err, tasks) {
+        resolve(tasks)
+      })
+    } catch {
+      reject()
+    }
   })
 }
 
 Task.prototype.delete = function(id) {
   return new Promise(async function(resolve, reject) {
-    await tasksCollection.deleteOne({"_id": mongodb.ObjectId(id)}, function() {
+    try {
+      await tasksCollection.deleteOne({"_id": mongodb.ObjectId(id)})
       resolve()
-    })
+    } catch {
+        reject()
+    }
   })
 }
 
 Task.prototype.getTask = function(id) {
   return new Promise(async function(resolve, reject) {
-    let task = await tasksCollection.findOne({"_id": mongodb.ObjectId(id)})
-    resolve(task)
+    try {
+      let task = await tasksCollection.findOne({"_id": mongodb.ObjectId(id)})
+      resolve(task)
+    } catch {
+      reject()
+    }
   })
 }
 
 Task.prototype.updateTask = function(id, newTask) {
   return new Promise(async (resolve, request) => {
-    await tasksCollection.findOneAndUpdate({"_id": mongodb.ObjectId(id)}, {$set: {"task": newTask}}, function() {
+    try {
+      await tasksCollection.findOneAndUpdate({"_id": mongodb.ObjectId(id)}, {$set: {"task": newTask}})
       resolve()
-    })
+    } catch {
+      reject()
+    }
   })
 }
 

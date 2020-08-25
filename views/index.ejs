@@ -1,10 +1,12 @@
 <%- include('includes/header') %>
+
+<%- include('includes/alert') %>
+
   <div class='header'>
     <a href="/logout" class='logout-link'>Logout</a>
     <h1 class='header__title'>Your Tasks</h1>
     <div class='form-container'>
       <form action="/add-task" method="POST" class='form'>
-        <div class="alert alert-red">Your task cannot exceed 75 characters.</div>
         <input type="text" name='task' class='task-input' placeholder='Enter your task here...' autofocus autocomplete="off">
         <button type="submit" class='submit-btn'>Add Task</button>
       </form>

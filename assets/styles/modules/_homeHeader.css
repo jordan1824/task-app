@@ -1,0 +1,67 @@
+.header {
+  background: var(--primary-color);
+  padding: 50px 0px;
+  width: 100%;
+  border-bottom: 5px solid var(--border-color);
+  position: relative;
+}
+.logout-link {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+  border: 1px solid transparent;
+}
+.logout-link:hover {
+  color: var(--secondary-color);
+}
+.header__title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: 'Lobster', cursive;
+  letter-spacing: 0.1rem;
+  margin-bottom: 10px;
+}
+.form-container {
+  text-align: center;
+}
+.form {
+  text-align: center;
+  margin: 50px auto 30px;
+  display: inline-block;
+  position: relative;
+}
+.task-input {
+  height: 50px;
+  width: 50vw;
+  border: none;
+  padding-left: 20px;
+  font-size: 1.2rem;
+  border-radius: 10px 0px 0px 10px;
+  position: relative;
+  left: 2px;
+}
+.task-input:focus {
+  outline: none;
+}
+.submit-btn {
+  padding: 15px 20px 14px;
+  border: none;
+  font-size: 1.1rem;
+  background: var(--btn-color);
+  color: white;
+  cursor: pointer;
+  position: relative;
+  right: 2px;
+  border-radius: 0px 5px 5px 0px;
+}
+.submit-btn:hover {
+  transition: background 0.5s;
+  background: #ba833a;
+}
+.submit-btn:focus {
+  outline: none;
+}

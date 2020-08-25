@@ -1,0 +1,8 @@
+<% if (errors.length) { %>
+  <div class='error-alert'>
+    <h3 class='alert-heading'>Error:</h3>
+    <% errors.forEach(error => { %>
+      <p class='alert-message'><%= error %></p>
+    <% }) %>
+  </div>
+<% } %>

@@ -1,0 +1,32 @@
+.error-alert {
+  width: 100%;
+  padding: 10px;
+  background: rgb(255, 78, 78);
+  border-bottom: 2px solid var(--secondary-color);
+}
+.alert-heading {
+  text-align: center;
+  margin: 5px;
+}
+.alert-message {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.alert {
+  width: 95%;
+  padding: 14px;
+  margin: auto;
+  border-radius: 10px 10px 0px 0px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 0.5s;
+  background: rgb(255, 78, 78);
+  color: white;
+  border: 1px solid white;
+  border-bottom: none;
+}
+.alert-show {
+  transform: translateX(-50%) translateY(-100%);
+}

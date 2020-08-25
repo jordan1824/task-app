@@ -15,7 +15,10 @@ exports.login = function(req, res) {
       res.redirect('/')
     })
   }).catch(function() {
-    res.send("Invalid login details")
+    req.flash("errors", "Invalid username and/or password.")
+    req.session.save(function() {
+      res.redirect('/login')
+    })
   })
 }
 
@@ -41,6 +44,11 @@ exports.register = function(req, res) {
       res.redirect('/')
     })
   }).catch(function(errors) {
-    res.render("404", {errors: errors})
+    errors.forEach(error => {
+      req.flash("errors", error)
+    })
+    req.session.save(function() {
+      res.redirect('/register')
+    })
   })
 }
