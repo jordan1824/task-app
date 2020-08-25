@@ -5,3 +5,11 @@
     <% }) %>
   </div>
 <% } %>
+
+<% if (success.length) { %>
+  <div class='error-alert alert--green'>
+    <% success.forEach(message => { %>
+      <p class='alert-message'><%= message %></p>
+    <% }) %>
+  </div>
+<% } %>

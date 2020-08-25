@@ -15,7 +15,7 @@ Task.prototype.cleanup = function() {
 
 Task.prototype.validate = function() {
   if (this.task == "") {this.errors.push("You must provide a task.")}
-  if (this.task.length > 75) {this.errors.push("Task cannot exceed 75 characters.")}
+  if (this.task.length > 100) {this.errors.push("Task cannot exceed 100 characters.")}
 }
 
 Task.prototype.createNewTask = function(username) {

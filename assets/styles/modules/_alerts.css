@@ -8,6 +8,9 @@
   text-align: center;
   margin-bottom: 10px;
 }
+.alert--green {
+  background: rgb(78, 255, 108);
+}
 
 .alert {
   width: 95%;

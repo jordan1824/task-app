@@ -4,7 +4,10 @@ exports.passwordProtected = function(req, res, next) {
   if (req.session.user) {
     next()
   } else {
-    res.redirect('/login')
+    req.flash("errors", "You must be logged in to view that page.")
+    req.session.save(function() {
+      res.redirect('/login')
+    })
   }
 }
 
@@ -29,11 +32,23 @@ exports.logout = function(req, res) {
 }
 
 exports.viewLogin = function(req, res) {
-  res.render("login")
+  if (req.session.user) {
+    req.session.destroy(function() {
+      res.render("login")
+    })
+  } else {
+    res.render("login")
+  }
 }
 
 exports.viewRegister = function(req, res) {
-  res.render('register')
+  if (req.session.user) {
+    req.session.destroy(function() {
+      res.render('register')
+    })
+  } else {
+    res.render('register')
+  }
 }
 
 exports.register = function(req, res) {

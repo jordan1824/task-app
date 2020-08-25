@@ -25,7 +25,7 @@ export default class TaskButtons {
         .then(() => {
           // Removes element from frontend
           let taskItem = event.target.parentElement.parentElement
-          taskItem.style.animationPlayState = "running"
+          taskItem.classList.add("animation")
           taskItem.addEventListener("animationend", () => {
             taskItem.remove()
             this.checkIfTasks()
@@ -52,7 +52,7 @@ export default class TaskButtons {
       .then(() => {
         // Removes element from frontend
         let taskItem = event.target.parentElement.parentElement.parentElement
-        taskItem.style.animationPlayState = "running"
+        taskItem.classList.add("animation")
         taskItem.addEventListener("animationend", () => {
           taskItem.remove()
           this.checkIfTasks()

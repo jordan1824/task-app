@@ -40,14 +40,17 @@ export default class AddTask {
 
   insertTaskHTML(task) {
     if (this.taskList.querySelector(".task-item")) {
-      return this.taskList.insertAdjacentHTML("beforeend", this.taskHTML(task))
+      this.taskList.insertAdjacentHTML("beforeend", this.taskHTML(task))
     } else {
-      return this.taskList.innerHTML = this.taskHTML(task)
+      this.taskList.innerHTML = this.taskHTML(task)
     }
+    this.taskList.lastChild.addEventListener("animationend", function() {
+      this.classList.remove("animation-reverse");
+    })
   }
 
   taskHTML(task) {
-    return `<li class='task'>
+    return `<li class='task animation-reverse'>
     <div class='link-container'>
       <a class='check-link' href="/delete/${task._id}"><i class="fa check-btn fa-check" data-id="${task._id}" aria-hidden="true"></i></a>
     </div>

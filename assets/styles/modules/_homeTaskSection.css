@@ -14,9 +14,18 @@
   margin: 10px auto;
   height: 100px;
   overflow: hidden;
+}
+.animation {
   animation-name: hide;
-  animation-play-state: paused;
   animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+}
+.animation-reverse {
+  animation-name: hide;
+  animation-direction: reverse;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
 }
@@ -123,6 +132,11 @@
     padding: 5px 0px 5px 5px;
     height: 130px;
     width: 100%;
+  }
+  .animation {
+    animation-name: hideLargeTask;
+  }
+  .animation-reverse {
     animation-name: hideLargeTask;
   }
   .empty-task {
