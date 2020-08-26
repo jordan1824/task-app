@@ -10,10 +10,32 @@ export default class TaskButtons {
       this.deleteBtnAction(event)
       this.checkBtnAction(event)
       this.editBtnAction(event)
+      this.deleteAllBtnAction(event)
     })
   }
 
   // Models
+  deleteAllBtnAction(event) {
+    if (event.target.classList.contains("delete-all-btn")) {
+      event.preventDefault()
+      if (confirm("Are you sure you want to delete all your tasks?")) {
+        fetch("/delete-tasks", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        .then(() => {
+          location.reload()
+        })
+        .catch(() => {
+          alert("Error. Please try again later.")
+        })
+      }
+ 
+    }
+  }
+
   deleteBtnAction(event) {
     if (event.target.classList.contains("delete-btn")) {
       event.preventDefault()
