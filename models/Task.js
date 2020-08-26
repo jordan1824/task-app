@@ -71,12 +71,20 @@ Task.prototype.getTask = function(id) {
   })
 }
 
-Task.prototype.updateTask = function(id, newTask) {
+Task.prototype.updateTask = function(id) {
   return new Promise(async (resolve, request) => {
-    try {
-      await tasksCollection.findOneAndUpdate({"_id": mongodb.ObjectId(id)}, {$set: {"task": newTask}})
-      resolve()
-    } catch {
+    this.cleanup()
+    this.validate()
+
+    if (!this.errors.length) {
+      let safeText = sanitizeHTML(this.task, {allowedTags: [], allowedAttributes: {}})
+      try {
+        await tasksCollection.findOneAndUpdate({"_id": mongodb.ObjectId(id)}, {$set: {"task": safeText}})
+        resolve(safeText)
+      } catch {
+        reject()
+      }
+    } else {
       reject()
     }
   })

@@ -80,12 +80,14 @@ export default class TaskButtons {
           },
           body: JSON.stringify(data),
         })
-        .then(function() {
+        .then(response => response.text())
+        .then(function(text) {
           // Updates task text in frontend
-          event.target.parentElement.parentElement.querySelector(".task-text").innerHTML = result
+          console.log(text)
+          event.target.parentElement.parentElement.querySelector(".task-text").innerHTML = text
         })
         .catch(function() {
-          this.errorAlert("Please try again later.")
+          alert("Please try again later.")
         })
       }
     }

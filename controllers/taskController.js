@@ -52,12 +52,9 @@ new Task().getTask(req.params.id).then(function(task) {
 }
 
 exports.edit = async function(req, res) {
-  new Task().updateTask(req.params.id, req.body.task).then(function() {
-    res.redirect('/')
+  new Task(req.body.task).updateTask(req.params.id).then(function(task) {
+    res.send(task)
   }).catch(function() {
-    req.flash("errors", "Please try again later.")
-    req.session.save(function() {
-      req.send("Please try again later.")
-    })
+    res.send("Error.")
   })
 }
