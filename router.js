@@ -15,5 +15,6 @@ router.post('/add-task', taskController.addTask)
 router.get('/delete/:id', userController.passwordProtected, taskController.delete)
 router.post('/edit/:id', taskController.edit)
 router.get('/edit/:id', userController.passwordProtected, taskController.viewEdit)
+router.post('/delete-tasks', taskController.deleteAll)
 
 module.exports = router;

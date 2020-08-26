@@ -16,6 +16,9 @@
   <div class='tasks-container'>
     <ul class='task-list'>
       <% if (tasks.length) { %>
+        <form action="/delete-tasks" method="POST" class="delete-all-form">
+          <button class="delete-all-btn" type="submit">Delete All Tasks</button>
+        </form>
       <% tasks.forEach(task => { %>
         <li class='task'>
           <div class='link-container'>

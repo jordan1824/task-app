@@ -58,3 +58,11 @@ exports.edit = async function(req, res) {
     res.send("Error.")
   })
 }
+
+exports.deleteAll = function(req, res) {
+  Task.deleteAllTasks(req.session.user.username).then(() => {
+    res.redirect('/')
+  }).catch(() => {
+    res.send("Please try again later.")
+  })
+}

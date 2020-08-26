@@ -90,4 +90,14 @@ Task.prototype.updateTask = function(id) {
   })
 }
 
+Task.deleteAllTasks = function(username) {
+  return new Promise((resolve, reject) => {
+    tasksCollection.remove({author: username}).then(() => {
+      resolve()
+    }).catch(() => {
+      reject()
+    })
+  })
+}
+
 module.exports = Task;

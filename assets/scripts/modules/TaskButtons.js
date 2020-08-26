@@ -95,8 +95,13 @@ export default class TaskButtons {
 
   checkIfTasks() {
     if (!document.querySelector(".task")) {
-      this.taskList.insertAdjacentHTML('beforeend', this.emptyTaskHTML())
-      document.querySelector(".empty-task").classList.add("empty-task--visible");
+      let deleteForm = document.querySelector(".delete-all-form")
+      deleteForm.classList.add("delete-all-btn-animation")
+      deleteForm.addEventListener("animationend", () => {
+        deleteForm.remove()
+        this.taskList.insertAdjacentHTML('beforeend', this.emptyTaskHTML())
+        document.querySelector(".empty-task").classList.add("empty-task--visible");
+      })
     }
   }
 

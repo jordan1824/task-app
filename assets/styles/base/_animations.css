@@ -31,3 +31,8 @@
     opacity: 0;
   }
 }
+
+@keyframes fadeAway {
+  0% {}
+  100% {opacity: 0}
+}

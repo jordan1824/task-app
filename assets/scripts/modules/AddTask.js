@@ -43,9 +43,11 @@ export default class AddTask {
       this.taskList.insertAdjacentHTML("beforeend", this.taskHTML(task))
     } else {
       this.taskList.innerHTML = this.taskHTML(task)
+      this.taskList.insertAdjacentHTML("afterbegin", this.deleteAllHTML())
     }
     this.taskList.lastChild.addEventListener("animationend", function() {
       this.classList.remove("animation-reverse");
+      document.querySelector(".delete-all-form").classList.add("visible")
     })
   }
 
@@ -62,6 +64,12 @@ export default class AddTask {
       <a href="/delete/${task._id}" data-id="${task._id}" class='delete-btn btn'>Delete</a>
     </div>
     </li>`
+  }
+
+  deleteAllHTML() {
+    return `<form action="/delete-tasks" method="POST" class="delete-all-form hidden">
+    <button class="delete-all-btn" type="submit">Delete All Tasks</button>
+    </form>`
   }
 
   errorAlert(message) {
