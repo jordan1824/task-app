@@ -11,10 +11,10 @@ router.get('/logout', userController.logout)
 
 // Task Related Routes
 router.get('/', userController.passwordProtected, taskController.home);
-router.post('/add-task', taskController.addTask)
+router.post('/add-task', userController.passwordProtected, taskController.addTask)
 router.get('/delete/:id', userController.passwordProtected, taskController.delete)
-router.post('/edit/:id', taskController.edit)
+router.post('/edit/:id', userController.passwordProtected, taskController.edit)
 router.get('/edit/:id', userController.passwordProtected, taskController.viewEdit)
-router.post('/delete-tasks', taskController.deleteAll)
+router.post('/delete-tasks', userController.passwordProtected, taskController.deleteAll)
 
 module.exports = router;

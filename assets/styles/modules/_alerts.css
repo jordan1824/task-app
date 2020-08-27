@@ -70,3 +70,10 @@
     padding: 12px 3px 14px;
   }
 }
+
+@media (max-width: 450px) {
+  .error-message {
+    font-size: 0.7rem;
+    bottom: 1px;
+  }
+}

@@ -60,6 +60,7 @@ export default class FormErrorMessage {
     let errors = 0;
     clearTimeout(this.usernameCounter)
     if (field.value.length > 50) {errors = this.insertAlert(field, "Your username cannot exceed 50 characters.", errors)}
+    if (field.value.match(/[$&+,:;=?@#|'<>.^*()%!_-]+/)) {errors = this.insertAlert(field, "Your username cannot contain special characters.", errors)}
     this.usernameTimedChecks(field, errors)
     if (!errors) {
       this.removeAlert(field)
@@ -88,6 +89,9 @@ export default class FormErrorMessage {
   emailTimedChecks(field, errors) {
     if (field.value.length == 0) {
       this.emailCounter = setTimeout(() => errors = this.insertAlert(field, "You must enter a valid email address.", errors), 2000)
+    }
+    if (!field.value.match(/[A-Za-z0-9]+@[a-zA-Z]+\.[a-zA-Z]+/)) {
+      this.emailCounter = setTimeout(() => errors = this.insertAlert(field, "You must provide a valid email address.", errors), 2000)
     }
   }
 
