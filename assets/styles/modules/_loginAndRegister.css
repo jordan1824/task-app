@@ -25,12 +25,14 @@
   width: 80%;
   margin: auto;
 }
-.form-label {
-  padding: 0;
-  margin: 0;
-  margin: 15px 0;
+.form-field-container {
+  position: relative;
 }
-.login-field {
+.form-label {
+  padding: 10px 0 0;
+  margin: 5px 0 15px;
+}
+.login-field, .register-field {
   width: 100%;
   margin: 10px auto;
   display: block;
@@ -39,6 +41,8 @@
   font-size: 1.1rem;
   padding: 5px 15px;
   border: none;
+  position: relative;
+  z-index: 10;
 }
 .login-btn {
   display: block;

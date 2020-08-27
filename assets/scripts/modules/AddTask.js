@@ -1,10 +1,12 @@
+import FormErrorMessage from "./FormErrorMessage"
+
 export default class AddTask {
   constructor() {
     this.form = document.querySelector('.form')
     this.taskField = document.querySelector(".task-input")
     this.taskList = document.querySelector(".task-list")
     this.body = document.querySelector("body")
-    this.events()
+    if (this.form) {this.events()}
   }
 
   // Events
@@ -35,6 +37,9 @@ export default class AddTask {
       .catch(function() {
         this.errorAlert("Please try again later.")
       })
+    } else {
+      let errors = 0;
+      new FormErrorMessage().insertAlert(document.querySelector(".task-input"), "You must enter a valid task.", errors)
     }
   }
 

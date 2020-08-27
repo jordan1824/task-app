@@ -36,3 +36,8 @@
   0% {}
   100% {opacity: 0}
 }
+
+@keyframes showErrorPopup {
+  0% {transform: translateY(100%) translateX(-50%) scaleY(0.7)}
+  100% {transform: translateY(0%) translateX(-50%) scaleY(1)}
+}

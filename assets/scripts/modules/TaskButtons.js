@@ -1,7 +1,7 @@
 export default class TaskButtons {
   constructor() {
     this.taskList = document.querySelector(".task-list")
-    this.events()
+    if (this.taskList) {this.events()}
   }
 
   // Events

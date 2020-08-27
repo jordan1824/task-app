@@ -9,12 +9,18 @@
 <div class='register-block'>
   <h2 class='login-title'>Register</h2>
   <form action="/register" method="POST" class='login-form'> 
-    <p class='form-label'>Username:</p>
-    <input class='login-field' type="text" name="username" placeholder="Enter username here..." autocomplete='off' autofocus>
-    <p class='form-label'>Email:</p>
-    <input class='login-field' type="text" name="email" placeholder="Enter email here..." autocomplete='off'>
-    <p class='form-label'>Password:</p>
-    <input class='login-field' type="password" name="password" placeholder="Enter password here..." autocomplete='off'>
+    <div class='form-field-container'>
+      <p class='form-label'>Username:</p>
+      <input class='register-field username' type="text" name="username" placeholder="Enter username here..." autocomplete='off' autofocus>
+    </div>
+    <div class='form-field-container'>
+      <p class='form-label'>Email:</p>
+      <input class='register-field email' type="text" name="email" placeholder="Enter email here..." autocomplete='off'>
+    </div>
+    <div class='form-field-container'>
+      <p class='form-label'>Password:</p>
+      <input class='register-field password' type="password" name="password" placeholder="Enter password here..." autocomplete='off'>
+    </div>
     <button class='login-btn' type="submit">Register</button>
     <a class='register-link' href="/login">Return To Login</a>
   </form>

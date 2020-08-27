@@ -13,21 +13,45 @@
 }
 
 .alert {
-  width: 95%;
-  padding: 14px;
-  margin: auto;
-  border-radius: 10px 10px 0px 0px;
+  background: rgb(255, 78, 78);
+  border-radius: 7px 7px 0 0;
   position: absolute;
+  width: 100%;
+  padding: 0;
+  top: 4px;
   left: 50%;
   transform: translateX(-50%);
-  transition: transform 0.5s;
-  background: rgb(255, 78, 78);
-  color: white;
-  border: 1px solid white;
-  border-bottom: none;
 }
-.alert-show {
-  transform: translateX(-50%) translateY(-100%);
+.task-form-field-container .alert {
+  width: 99%;
+}
+.error-message {
+  text-align: center;
+  padding: 12px 3px;
+  margin: 0;
+  position: relative;
+  bottom: 3px;
+}
+.error-popup-animation {
+  animation-name: showErrorPopup;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+}
+.reverse-error-popup-animation {
+  animation-name: showErrorPopup;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 0.7s;
+  animation-timing-function: ease;
+  animation-direction: reverse;
+}
+
+@media (max-width: 750px) {
+  .task-form-field-container .alert {
+    width: 100%;
+  }
 }
 
 @media (max-width: 550px) {
@@ -37,5 +61,12 @@
   .alert-message {
     font-size: 0.8rem;
     margin: 8px;
+  }
+  .alert {
+    top: 6px;
+  }
+  .error-message {
+    font-size: 0.9rem;
+    padding: 12px 3px 14px;
   }
 }
