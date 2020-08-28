@@ -2,6 +2,7 @@
   padding: 50px 0px;
   border-bottom: 5px solid var(--border-color);
   position: relative;
+  background: var(--primary-color);
 }
 .logout-link {
   position: absolute;

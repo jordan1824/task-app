@@ -42,4 +42,30 @@
       <%}%>
     </ul>
   </div>
+  <div class='modal edit-modal'>
+    <div class='modal__exit-btn'><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class='modal__container'>
+      <h3 class='modal__title'>Edit Your Task</h3>
+      <textarea maxlength="100" class='modal__text'>This is where the task is going to be.</textarea>
+      <button class='modal__button modal__update-btn'>Update Task</button>
+      <button class='modal__cancel-btn'>Cancel</button>
+    </div>
+  </div>
+  <div class='modal delete-modal'>
+    <div class='modal__exit-btn'><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class='modal__container'>
+      <h3 class='modal__title modal__title--small'>Are you sure you want to delete this task?</h3>
+      <textarea maxlength="100" class='modal__text modal__text--no-edit' readonly>This is where the task is going to be.</textarea>
+      <button class='modal__button modal__button--delete'>Yes, Delete!</button>
+      <button class='modal__button modal__button--cancel'>Cancel</button>
+    </div>
+  </div>
+  <div class='modal delete-all-modal'>
+    <div class='modal__exit-btn'><i class="fa fa-times" aria-hidden="true"></i></div>
+    <div class='modal__container'>
+      <h3 class='modal__title modal__title--small'>Are you sure you want to delete all tasks?</h3>
+      <button class='modal__button modal__button--delete-all'>Yes, Delete!</button>
+      <button class='modal__button modal__button--cancel'>Cancel</button>
+    </div>
+  </div>
   <%- include('includes/footer') %>
