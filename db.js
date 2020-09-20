@@ -1,6 +1,5 @@
 const mongodb = require("mongodb")
-const dotenv = require("dotenv")
-dotenv.config()
+const app = require("./app")
 
 let port = process.env.PORT
 if (port == null || port == "") {
@@ -9,6 +8,5 @@ if (port == null || port == "") {
 
 mongodb.connect(process.env.CONNECTIONSTRING, {useNewUrlParser: true, useUnifiedTopology: true}, function(err, client) {
   module.exports = client
-  const app = require("./app")
   app.listen(port)
 })

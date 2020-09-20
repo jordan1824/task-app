@@ -2,10 +2,13 @@ const express = require('express');
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
+const dotenv = require("dotenv")
+dotenv.config()
+
 const app = express();
 
 let sessionOptions = session({
-  secret: "Supersecret Code",
+  secret: process.env.SECRET,
   store: new MongoStore({client: require('./db')}),
   resave: false,
   saveUninitialized: false,
